@@ -65,7 +65,11 @@ Nesta etapa, o objetivo é entender como as variáveis se comportam, observar pa
 
 <img width="399" height="280" alt="image" src="https://github.com/user-attachments/assets/5efc26cf-faf3-4bd5-ac06-32043ffa6a67" />
 
-<img width="401" height="285" alt="image" src="https://github.com/user-attachments/assets/f79dd013-a814-4e9d-9fa5-18070ade40f3" />
+<img width="401" height="286" alt="image" src="https://github.com/user-attachments/assets/8b0f3c47-df6c-4cb6-88c8-c59fb8754236" />
+
+<img width="403" height="280" alt="image" src="https://github.com/user-attachments/assets/9775dbd3-ee92-494b-b23b-1baf424df771" />
+
+<img width="401" height="286" alt="image" src="https://github.com/user-attachments/assets/dfd5d4dc-d09b-4b4e-acb5-1f9bd84e752a" />
 
 
 
