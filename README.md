@@ -55,6 +55,24 @@ A base contém 7.240 colaboradores, contratados ao longo de diferentes períodos
 ## Análise Exploratória (EDA)
 Nesta etapa, o objetivo é entender como as variáveis se comportam, observar padrões e garantir que a base está apta para a etapa de modelagem.
 
+<img width="396" height="283" alt="image" src="https://github.com/user-attachments/assets/55ab4d2c-a9dd-47f7-8476-a66a701c22bb" />
+
+<img width="400" height="285" alt="image" src="https://github.com/user-attachments/assets/866a5ac2-ee62-4ef3-b503-69866a9316d9" />
+
+<img width="399" height="279" alt="image" src="https://github.com/user-attachments/assets/7697061b-3bfe-46c5-9a0e-ce126b048cad" />
+
+<img width="401" height="281" alt="image" src="https://github.com/user-attachments/assets/653e0c9c-b658-4e7c-b430-e9deabce0d37" />
+
+<img width="399" height="280" alt="image" src="https://github.com/user-attachments/assets/5efc26cf-faf3-4bd5-ac06-32043ffa6a67" />
+
+<img width="401" height="285" alt="image" src="https://github.com/user-attachments/assets/f79dd013-a814-4e9d-9fa5-18070ade40f3" />
+
+
+
+
+
+
+
 
 
 
