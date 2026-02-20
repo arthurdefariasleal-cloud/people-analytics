@@ -1,5 +1,4 @@
-# people-analytics
-Como transformar dados de perfil e comportamento em decisões melhores de contratação e retenção
+# Como usar People Analytics para Melhorar Contratações e Reduzir Turnover
 
 # Estrutura do Projeto
 
@@ -14,24 +13,16 @@ people-analytics/
 │   └── analises.xlsx
 │
 └── assets/images/
-    ├── grafico1.png
-    ├── grafico2.png
-    ├── grafico3.png
-    ├── grafico4.png
-    ├── grafico5.png
-    ├── grafico6.png
-    ├── grafico7.png
-    └── grafico8.png
+    ├── area_atendimento.png
+    ├── escolaridade.png
+    ├── experiencia_previa.png
+    ├── nivel_ingles.png
+    ├── nivel_sinceridade.png
+    ├── performance_6_meses.png
+    ├── tempo_trajeto.png
+    └── tensao_trabalho.png
 ```
-**Dados**  
-* Base original: data/raw/base_original.xlsx
 
-**Análises**  
-* Planilha com aplicação do modelo: analysis/analises.xlsx
-
-**Visualizações**  
-* Gráficos disponíveis em assets/images/
-    
 # Entendimento do Negócio
 ## Objetivo
 A empresa de Contact Center está passando por um desafio: a alta rotatividade motivada por baixo desempenho dos seus colaboradores nos primeiros meses pós-contratação. Isto acaba promovendo um ciclo contínuo de novas contratações e, por consequência, novos custos com treinamentos e reposições. 
@@ -127,11 +118,11 @@ Foram removidos espaços à esquerda em todas as variáveis, além de verificada
 **Padronização da variável P01 (Experiência Prévia)**  
 A categoria “A empresa é o meu primeiro emprego” foi reclassificada como “Não”, pois analiticamente se equivalem.
 
-# Modelo / Insights
+# Modelagem
 O objetivo desta etapa é identificar quais variáveis possuem maior poder explicativo sobre o risco de turnover e quantificar a probabilidade de ocorrência.
 
 ## Escolha da Técnica Estatística
-Para medir o quanto cada variável contribui para a boa performance, utilizei duas técnicas estatísticas: **Information Value (IV)** e o **Teste-Z de duas populações**.
+Para medir o quanto cada variável contribui para a boa performance, utilizei duas técnicas estatísticas: **Information Value (IV)** e o **Teste de Hipótese Z de 2 populações**.
 
 A primeira foi utilizada como ponto de partida para medir o grau de influência de cada variável no contexto do negócio, e a segunda para validar estatisticamente se as diferenças entre as categorias são relevantes.
 
@@ -141,7 +132,7 @@ Referência de interpretação:
   <img src="https://github.com/user-attachments/assets/718221d3-20dc-4f31-974d-1fa7afa35973" width="400">
 </div>
 
-## Aplicação de IV
+## Aplicação de IV + Insights
 Para iniciar o modelo, apliquei IV em cada variável selecionada, medidndo o quanto cada uma delas contribui para a previsão de boa performance. Resultados abaixo:
 
 <br>
@@ -185,21 +176,24 @@ Essas variáveis, quando combinadas, apresentam maior relevância do que quando 
 * Os que concordam totalmente (nível 5) apresentam 59% de boa performance, acima da média e com a maior representatividade da base (46%).
 * Os resultados apresentam um padrão comportamental consistente.
 
-## Aplicação do Teste-Z de 2 populações
+## Aplicação do Teste de Hipótese + Insights
 Como os resultados da aplicação de IV indicaram baixo poder de influência, decidi aplicar o Teste Z de 2 populações para validar com mais rigor se as diferenças de boas performances observadas entre os grupos são realmente relevantes.
 
-**1. P01: Experiência em Contact Center**  
-
-<img width="666" height="504" alt="image" src="https://github.com/user-attachments/assets/33e763fb-b3ca-40e4-af92-16d740866f44" />
+### 1. P01: Experiência em Contact Center
+<br>
+<img width="659" height="508" alt="image" src="https://github.com/user-attachments/assets/43ec448c-5c0a-450d-8d90-665f509cd127" />
+<br><br>
 
 Como p-valor = 0% é menor que o nível de significância de 5%, concluo que existem evidências estatísticas suficientes para rejeitar H0. 
 
 Desta forma, considero H1: **A proporção de Boa Performe de colaboradores experientes é menor do que a de inexperientes**.
 
-**2. P07: “É bom trabalho com meus colegas de trabalho”**  
-Para essa variável, as respostas foram unificadas em “Concordo” (4+5) e “Discordo” (1+2), desconsiderando as categorias “Sem resposta” e “Indiferente” da análise.
+### 2. P07: “É bom trabalho com meus colegas de trabalho”
+As respostas foram unificadas em “Concordo” (4+5) e “Discordo” (1+2), desconsiderando as categorias “Sem resposta” e “Indiferente”.
 
-<img width="669" height="503" alt="image" src="https://github.com/user-attachments/assets/3bcce4a5-292c-45b9-a4f3-70eb4550d9e2" />
+<br>
+<img width="658" height="514" alt="image" src="https://github.com/user-attachments/assets/1203ebcb-8a05-4a8e-9a2e-2844ae98a4d9" />
+<br><br>
 
 De forma semelhante, com p-valor = 0,2% é menor que 5%, posso rejeitar H0 e considerar H1: **A proporção de Boa Performance de colaboradores que discordam é menor do que a dos que concordam**.
 
@@ -210,53 +204,53 @@ Portanto, mesmo com IVs fracos, podemos afirmar que elas contribuem na performan
 
 ## Verificação das Hipóteses de Negócio
 
-**1. O turnover por performance de colaboradores com menor nível de escolaridade é maior do que entre colaboradores com maior nível de escolaridade.**  
+**1. O turnover por performance é maior entre colaboradores com menor nível de escolaridade.**   
 Hipótese estatisticamente fraca. Menor escolaridade apresenta menor taxa de boa performance (54 x 62-64%), mas o IV é muito baixo (0,015)
 
-**2. Nível de escolaridade é o maior preditor de boa performance de um candidato.**  
+**2. Escolaridade é o principal preditor de boa performance.**  
 Hipótese refutada. Escolaridade não é o maior preditor e possui baixo poder explicativo (IV = 0,015)
 
-**3. Candidatos que não possuem nenhuma experiência prévia em Contact Center estão mais suscetíveis à turnover por performance do que os que possuem.**  
+**3. Colaboradores sem experiência prévia são mais suscetíveis a turnover por performance.**  
 Hipótese refutada. Candidatos sem experiência performam melhor (60x53%)
 
-**4. O turnover por performance de colaboradores com nível básico ou intermediário de inglês é maior do que entre colaboradores com nível avançado ou fluente.**  
+**4. Turnover é maior entre colaboradores com inglês básico ou intermediário.**  
 Hipótese estatisticamente fraca. Há leve melhora com o aumento do nível de inglês, mas IV é irrelevante (0,005)
 
-**5. A área de atendimento em que o candidato atuou por mais tempo tem forte poder de influência na sua performance.**  
+**5. A área onde o colaborador atuou por mais tempo influencia sua performance.**  
 Hipótese refutada. "Atuação Anterior" tem IV = 0,030, indicando influência fraca na performance.
 
-**6. A sinceridade do candidato que diz o que pensa não é um fator preditivo para prever boa performance.**  
+**6. Sinceridade não é fator preditivo de boa performance.**  
 Hipótese confirmada. “Sinceridade” apresenta IV = 0,008 e taxas muito próximas da média (56%), logo não é fator preditivo relevante.
 
-**7. O turnover por performance de colaboradores que relatam trabalhar sob alta tensão é maior do que entre os que relatam menor nível de tensão.**  
+**7. Colaboradores que relatam alta tensão apresentam maior turnover por performance.**  
 Hipótese refutada. Quem relata alta tensão não apresenta maior baixa performance (48–56% boa performance) e IV = 0,003.
 
-**8. O tempo gasto pelo colaborador no trajeto da sua residência para a empresa impacta diretamente na sua performance.**  
+**8. Tempo de trajeto impacta diretamente a performance.**  
 Estatisticamente fraca. Há leve piora acima de 2h (45%), mas IV = 0,012 indica impacto muito baixo.
 
 # Análises
 Após aplicar as análises estatísticas, é possível apontar:
 
 **1. Experiência prévia não garante melhor performance**  
-Contrariando o senso comum, candidatos sem experiência em Contact Center apresentaram melhor performance (60% x 53%). 
-Apesar do IV ser baixo, foi um dos maiores encontrados e o Teste Z confirmou diferença estatística. 
-Isso sugere que perfis “crus” podem se adaptar melhor à cultura e aos treinamentos da empresa.
+Contrariando o senso comum, candidatos sem experiência em Contact Center apresentaram melhor performance (60% x 53%).  
+Apesar do IV ser baixo, foi um dos maiores encontrados e o Teste Z confirmou diferença estatística.  
+Isso sugere que perfis “crus” podem se adaptar melhor à cultura e aos treinamentos da empresa.  
 
 **2. Postura colaborativa tem relação com performance**  
-Entre as variáveis comportamentais, “gostar de trabalhar com os colegas” foi a única com sinal relevante.
-Quem concorda com essa afirmação teve 57% de boa performance, enquanto quem discorda apresentou 39%.
-Postura colaborativa deve ser considerada no processo seletivo.
+Entre as variáveis comportamentais, “gostar de trabalhar com os colegas” foi a única com sinal relevante.  
+Quem concorda com essa afirmação teve 57% de boa performance, enquanto quem discorda apresentou 39%.  
+Postura colaborativa deve ser considerada no processo seletivo.  
 
 **3. Entre experientes, priorizar Backoffice**  
-Candidatos vindos de Backoffice apresentaram 60% de boa performance, acima da média dos experientes (53%).
+Candidatos vindos de Backoffice apresentaram 60% de boa performance, acima da média dos experientes (53%).  
 Esse perfil pode ser priorizado dentro do grupo com experiência prévia.
 
 **4. Suporte Técnico com Vendas (atenção futura)**  
-Apresentou alta performance (73%), porém com amostra muito pequena (1%).
+Apresentou alta performance (73%), porém com amostra muito pequena (1%).  
 Não recomenda mudança imediata, apenas monitoramento no longo prazo.
 
 **5. Retenção (atenção futura)**  
-Mostrou baixa performance (39%), mas também com baixa representatividade (3%).
+Mostrou baixa performance (39%), mas também com baixa representatividade (3%).  
 Requer acompanhamento antes de qualquer decisão prática.
 
 # Política de Contratação Recomendada
@@ -265,10 +259,10 @@ Candidatos inexperientes na área não devem ser preteridos em nenhuma etapa do 
 
 **2. Candidatos com perfil colaborativo e de boa relação com os colegas devem ser priorizados.**  
 Para isso, o RH deve-se adotar perguntas que aprofundem mais o tema. Por exemplo:
-** Como você costuma lidar com colegas que pensam diferente de você?
-** Conte sobre a sua melhor experiência de trabalho em grupo.
-** Você costuma dividir problemas do dia-a-dia com os seus colegas de trabalho?
-** Qual a sua postura perante um conflito entre seus colegas de trabalho?
+* Como você costuma lidar com colegas que pensam diferente de você?
+* Conte sobre a sua melhor experiência de trabalho em grupo.
+* Você costuma dividir problemas do dia-a-dia com os seus colegas de trabalho?
+* Qual a sua postura perante um conflito entre seus colegas de trabalho?
 
 **3. Priorizar o setor de Backoffice entre os candidatos com experiência prévia em Contact Center.**  
 Mesmo que a experiência prévia do candidato em Contact Center não seja um critério eliminatório, quando um candidato a tiver, seu setor de atuação pode significar informações adicionais relevantes.
