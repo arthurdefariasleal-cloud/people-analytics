@@ -22,29 +22,40 @@ Isso faz com que parte significativa das contratações resulte em baixa perform
 4. A Política de Contratação da empresa não sofrerá nenhuma mudança significativa durante o projeto.
 
 ## Hipóteses de Negócio
-Antes da análise, levantei hipóteses com base na lógica de **Fato (Medida) + Dimensão (Detalhes)**
+Antes da análise, levantei hipóteses com base na lógica:
 
-**Fato + Dimensão: Colaborador - Atributo: Escolaridade**    
-(1) O turnover por performance de colaboradores com menor nível de escolaridade é maior do que entre colaboradores com maior nível de escolaridade.  
-(2) Nível de escolaridade é o maior preditivo de boa performance de um candidato.
+Fato (Medida): Turnover por performance  
+Dimensão (Atributos do colaborador)
 
-**Fato + Dimensão: Colaborador - Atributo: Experiência prévia em Contact Center**  
-(3) Candidatos que não possuem nenhuma experiência prévia em Contact Center estão mais suscetíveis à turnover por performance do que os que possuem.
+**Escolaridade**
 
-**Fato + Dimensão: Colaborador - Atributo: Nível de Inglês**  
-(4) O turnover por performance de colaboradores com nível básico ou intermediário de inglês é maior do que entre colaboradores com nível avançado ou fluente.
+1. O turnover por performance é maior entre colaboradores com menor nível de escolaridade.
+2. Escolaridade é o principal preditor de boa performance.
 
-**Fato + Dimensão: Colaborador - Atributo: Área de atuação anterior**  
-(5) A área de atendimento em que o candidato atuou por mais tempo tem forte poder de influência na sua performance.
+**Experiência prévia em Contact Center**
 
-**Fato + Dimensão: Colaborador - Atributo: Sinceridade (perfil comportamental)**  
-(6) A sinceridade do candidato que diz o que pensa não é um fator preditivo para prever boa performance.
+3. Colaboradores sem experiência prévia são mais suscetíveis a turnover por performance.
 
-**Fato + Dimensão: Colaborador - Atributo: Nível de tensão no trabalho**  
-(7) O turnover por performance de colaboradores que relatam trabalhar sob alta tensão é maior do que entre os que relatam menor nível de tensão.
+**Nível de Inglês**
 
-**Fato + Dimensão: Colaborador - Atributo: Tempo de deslocamento**  
-(8) O tempo gasto pelo colaborador no trajeto da sua residência para a empresa impacta diretamente na sua performance.
+4. Turnover é maior entre colaboradores com inglês básico ou intermediário.
+
+**Área de atuação anterior**
+
+5. A área onde o colaborador atuou por mais tempo influencia sua performance.
+
+**Perfil comportalmental (Sinceridade)**
+
+6. Sinceridade não é fator preditivo de boa performance.
+
+**Nível de tensão no trabalho**
+
+7. Colaboradores que relatam alta tensão apresentam maior turnover por performance.
+
+**Tempo de deslocamento casa-empresa**
+
+8. Tempo de trajeto impacta diretamente a performance.
+
 
 # Entendimento dos Dados
 ## Descrição da Base
@@ -53,7 +64,8 @@ A base contém 7.240 colaboradores, contratados ao longo de diferentes períodos
 <img width="1225" height="292" alt="image" src="https://github.com/user-attachments/assets/f32acca4-ebf8-4d64-b303-269f498d77f6" />
 
 ## Análise Exploratória (EDA)
-Nesta etapa, o objetivo é entender como as variáveis se comportam, observar padrões e garantir que a base está apta para a etapa de modelagem.
+O objetivo desta etapa é observar padrões nas variáveis e garantir que a base esteja apta para a etapa de modelagem.
+<br><br>
 
 <img width="1654" height="634" alt="image" src="https://github.com/user-attachments/assets/4ca588e9-5711-49c4-8bee-5bca5359fa82" />
 <br><br>
@@ -66,7 +78,11 @@ Insights:
 
 # Preparação dos Dados
 ## Seleção das Variáveis
-Por se tratar de um conjunto com poucas variáveis, optei por manter praticamente todas elas na minha análise, com uma exceção: “P06: Você possui dependentes?”. Essa remoção foi baseada em dois critérios: (1) ética e privacidade e (2) baixa relevância para o objetivo de negócio.
+Por se tratar de um conjunto com poucas variáveis, optei por manter praticamente todas elas na minha análise, com exceção da variável “P06: Você possui dependentes?”. 
+
+Essa remoção foi baseada em dois critérios:  
+1. Etica e privacidade;
+2. Baixa relevância para o objetivo de negócio.
 
 ## Limpeza e Formatação dos Dados
 Após a análise exploratória e a seleção das variáveis, realizei a etapa de limpeza da base. 
@@ -90,14 +106,24 @@ A primeira foi utilizada como ponto de partida para medir o grau de influência 
 
 Referência de interpretação:
 
-<img width="291" height="147" alt="image" src="https://github.com/user-attachments/assets/718221d3-20dc-4f31-974d-1fa7afa35973" />
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/718221d3-20dc-4f31-974d-1fa7afa35973" width="400">
+</div>
 
 ## Aplicação de IV
 Para iniciar o modelo, apliquei IV em cada variável selecionada, medidndo o quanto cada uma delas contribui para a previsão de boa performance. Resultados abaixo:
 
+<br>
+<div align="center">
 <img width="801" height="292" alt="image" src="https://github.com/user-attachments/assets/02ce3a14-dc2e-4322-b8ad-9b1f346568b5" />
+</div>
 
-Os resultados mostram que todas as variáveis são interpretadas como “Fracas” ou “Irrelevantes”. Desta forma, decidi desconsiderar as variáveis “Irrelevantes” e aprofundar a análise nas variáveis “Fracas” que, apesar de fracas, ainda apresentam algum grau de relevância para a predição. Essas variáveis, quando combinadas, apresentam maior relevância do que quando consideradas individualmente. 
+<br><br>
+Os resultados mostram que todas as variáveis são interpretadas como “Fracas” ou “Irrelevantes”.
+
+Desta forma, decidi desconsiderar as variáveis “Irrelevantes” e aprofundar a análise nas variáveis “Fracas” que, apesar de fracas, ainda apresentam algum grau de relevância para a predição.
+
+Essas variáveis, quando combinadas, apresentam maior relevância do que quando consideradas individualmente.
 
 ### 1. P01: Experiência em Contact Center
 
