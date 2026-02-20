@@ -55,23 +55,10 @@ A base contém 7.240 colaboradores, contratados ao longo de diferentes períodos
 ## Análise Exploratória (EDA)
 Nesta etapa, o objetivo é entender como as variáveis se comportam, observar padrões e garantir que a base está apta para a etapa de modelagem.
 
-<img width="396" height="283" alt="image" src="https://github.com/user-attachments/assets/55ab4d2c-a9dd-47f7-8476-a66a701c22bb" />
+<img width="1654" height="634" alt="image" src="https://github.com/user-attachments/assets/4ca588e9-5711-49c4-8bee-5bca5359fa82" />
+<br><br>
 
-<img width="400" height="285" alt="image" src="https://github.com/user-attachments/assets/866a5ac2-ee62-4ef3-b503-69866a9316d9" />
-
-<img width="399" height="279" alt="image" src="https://github.com/user-attachments/assets/7697061b-3bfe-46c5-9a0e-ce126b048cad" />
-
-<img width="401" height="281" alt="image" src="https://github.com/user-attachments/assets/653e0c9c-b658-4e7c-b430-e9deabce0d37" />
-
-<img width="399" height="280" alt="image" src="https://github.com/user-attachments/assets/5efc26cf-faf3-4bd5-ac06-32043ffa6a67" />
-
-<img width="401" height="286" alt="image" src="https://github.com/user-attachments/assets/8b0f3c47-df6c-4cb6-88c8-c59fb8754236" />
-
-<img width="403" height="280" alt="image" src="https://github.com/user-attachments/assets/9775dbd3-ee92-494b-b23b-1baf424df771" />
-
-<img width="401" height="286" alt="image" src="https://github.com/user-attachments/assets/dfd5d4dc-d09b-4b4e-acb5-1f9bd84e752a" />
-
-Observações importantes desta etapa:
+Insights:
 * A taxa de baixa performance (44%) indica ineficiência na Política de Contratação atual.
 * A empresa contrata grande volume de perfis com menor qualificação formal.
 * O quadro apresenta uma alta proporção de colaboradores sem experiência.
@@ -93,7 +80,7 @@ Foram removidos espaços à esquerda em todas as variáveis, além de verificada
 **Padronização da variável P01 (Experiência Prévia)**  
 A categoria “A empresa é o meu primeiro emprego” foi reclassificada como “Não”, pois analiticamente se equivalem.
 
-# Modelo / Análises
+# Modelo / Insights
 O objetivo desta etapa é identificar quais variáveis possuem maior poder explicativo sobre o risco de turnover e quantificar a probabilidade de ocorrência.
 
 ## Escolha da Técnica Estatística
@@ -110,7 +97,7 @@ Para iniciar o modelo, apliquei IV em cada variável selecionada, medidndo o qua
 
 <img width="801" height="292" alt="image" src="https://github.com/user-attachments/assets/02ce3a14-dc2e-4322-b8ad-9b1f346568b5" />
 
-Os resultados mostram que todas as variáveis são interpretadas como “Fracas” ou “Irrelevantes”. Desta forma, decidir desconsiderar as variáveis “Irrelevantes” e aprofundar a análise nas variáveis “Fracas” que, apesar de fracas, ainda apresentam algum grau de relevância para a predição. Essas variáveis, quando combinadas, apresentam maior relevância do que quando consideradas individualmente. 
+Os resultados mostram que todas as variáveis são interpretadas como “Fracas” ou “Irrelevantes”. Desta forma, decidi desconsiderar as variáveis “Irrelevantes” e aprofundar a análise nas variáveis “Fracas” que, apesar de fracas, ainda apresentam algum grau de relevância para a predição. Essas variáveis, quando combinadas, apresentam maior relevância do que quando consideradas individualmente. 
 
 ### 1. P01: Experiência em Contact Center
 
@@ -164,7 +151,76 @@ Os resultados obtidos a partir do Teste-Z mostram que há evidências estatísti
 
 Portanto, mesmo com IVs fracos, podemos afirmar que elas contribuem na performance do colaborador após 6 meses de contratação.
 
+## Verificação das Hipóteses de Negócio
 
+**1. O turnover por performance de colaboradores com menor nível de escolaridade é maior do que entre colaboradores com maior nível de escolaridade.**  
+Hipótese estatisticamente fraca. Menor escolaridade apresenta menor taxa de boa performance (54 x 62-64%), mas o IV é muito baixo (0,015)
+
+**2. Nível de escolaridade é o maior preditor de boa performance de um candidato.**  
+Hipótese refutada. Escolaridade não é o maior preditor e possui baixo poder explicativo (IV = 0,015)
+
+**3. Candidatos que não possuem nenhuma experiência prévia em Contact Center estão mais suscetíveis à turnover por performance do que os que possuem.**  
+Hipótese refutada. Candidatos sem experiência performam melhor (60x53%)
+
+**4. O turnover por performance de colaboradores com nível básico ou intermediário de inglês é maior do que entre colaboradores com nível avançado ou fluente.**  
+Hipótese estatisticamente fraca. Há leve melhora com o aumento do nível de inglês, mas IV é irrelevante (0,005)
+
+**5. A área de atendimento em que o candidato atuou por mais tempo tem forte poder de influência na sua performance.**  
+Hipótese refutada. "Atuação Anterior" tem IV = 0,030, indicando influência fraca na performance.
+
+**6. A sinceridade do candidato que diz o que pensa não é um fator preditivo para prever boa performance.**  
+Hipótese confirmada. “Sinceridade” apresenta IV = 0,008 e taxas muito próximas da média (56%), logo não é fator preditivo relevante.
+
+**7. O turnover por performance de colaboradores que relatam trabalhar sob alta tensão é maior do que entre os que relatam menor nível de tensão.**  
+Hipótese refutada. Quem relata alta tensão não apresenta maior baixa performance (48–56% boa performance) e IV = 0,003.
+
+**8. O tempo gasto pelo colaborador no trajeto da sua residência para a empresa impacta diretamente na sua performance.**  
+Estatisticamente fraca. Há leve piora acima de 2h (45%), mas IV = 0,012 indica impacto muito baixo.
+
+# Análises
+Após aplicar as análises estatísticas, é possível apontar:
+
+**1. Experiência prévia não garante melhor performance**  
+Contrariando o senso comum, candidatos sem experiência em Contact Center apresentaram melhor performance (60% x 53%). 
+Apesar do IV ser baixo, foi um dos maiores encontrados e o Teste Z confirmou diferença estatística. 
+Isso sugere que perfis “crus” podem se adaptar melhor à cultura e aos treinamentos da empresa.
+
+**2. Postura colaborativa tem relação com performance**  
+Entre as variáveis comportamentais, “gostar de trabalhar com os colegas” foi a única com sinal relevante.
+Quem concorda com essa afirmação teve 57% de boa performance, enquanto quem discorda apresentou 39%.
+Postura colaborativa deve ser considerada no processo seletivo.
+
+**3. Entre experientes, priorizar Backoffice**  
+Candidatos vindos de Backoffice apresentaram 60% de boa performance, acima da média dos experientes (53%).
+Esse perfil pode ser priorizado dentro do grupo com experiência prévia.
+
+**4. Suporte Técnico com Vendas (atenção futura)**  
+Apresentou alta performance (73%), porém com amostra muito pequena (1%).
+Não recomenda mudança imediata, apenas monitoramento no longo prazo.
+
+**5. Retenção (atenção futura)**  
+Mostrou baixa performance (39%), mas também com baixa representatividade (3%).
+Requer acompanhamento antes de qualquer decisão prática.
+
+# Política de Contratação Recomendada
+**1. Não exigir experiência prévia como critério eliminatório.**  
+Candidatos inexperientes na área não devem ser preteridos em nenhuma etapa do processo seletivo. Esta recomendação reduz um viés de pré-conceito.
+
+**2. Candidatos com perfil colaborativo e de boa relação com os colegas devem ser priorizados.**  
+Para isso, o RH deve-se adotar perguntas que aprofundem mais o tema. Por exemplo:
+** Como você costuma lidar com colegas que pensam diferente de você?
+** Conte sobre a sua melhor experiência de trabalho em grupo.
+** Você costuma dividir problemas do dia-a-dia com os seus colegas de trabalho?
+** Qual a sua postura perante um conflito entre seus colegas de trabalho?
+
+**3. Priorizar o setor de Backoffice entre os candidatos com experiência prévia em Contact Center.**  
+Mesmo que a experiência prévia do candidato em Contact Center não seja um critério eliminatório, quando um candidato a tiver, seu setor de atuação pode significar informações adicionais relevantes.
+
+**4. Retirar do processo seletivo a pergunta sobre dependentes.**    
+Além de não acrescentar valor preditivo no contexto do negócio, a pergunta também fere conceitos éticos, pois o candidato fornece informações pessoais que não têm relevância para as suas habilidades profissionais.
+
+**5. Reavaliar perguntas sobre “Gostar de fazer as coisas do próprio jeito”, “Gostar de dizer o que pensa”, “Medo de criticar lideranças” e “Situações de autocontrole”.**  
+A análise mostrou que essas perguntas são irrelevantes para prever performance. Contudo, é preciso avaliar se elas são importantes para avaliação de outros contextos. Neste caso, cabe ao RH reavaliar a necessidade de mantê-las ou não.
 
 
 
