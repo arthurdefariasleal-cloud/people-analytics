@@ -23,6 +23,14 @@ people-analytics/
     ├── grafico7.png
     └── grafico8.png
 ```
+**Dados**  
+* Base original: data/raw/base_original.xlsx
+
+**Análises**  
+* Planilha com aplicação do modelo: analysis/analises.xlsx
+
+**Visualizações**  
+* Gráficos disponíveis em assets/images/
     
 # Entendimento do Negócio
 ## Objetivo
