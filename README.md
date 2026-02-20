@@ -1,6 +1,29 @@
 # people-analytics
 Como transformar dados de perfil e comportamento em decisões melhores de contratação e retenção
 
+# Estrutura do Projeto
+
+```bash
+people-analytics-performance/
+│
+├── data/
+│   └── raw/
+│       └── base_original.xlsx
+│
+├── analysis/
+│   └── analises.xlsx
+│
+└── assets/images/
+    ├── grafico1.png
+    ├── grafico2.png
+    ├── grafico3.png
+    ├── grafico4.png
+    ├── grafico5.png
+    ├── grafico6.png
+    ├── grafico7.png
+    └── grafico8.png
+```
+    
 # Entendimento do Negócio
 ## Objetivo
 A empresa de Contact Center está passando por um desafio: a alta rotatividade motivada por baixo desempenho dos seus colaboradores nos primeiros meses pós-contratação. Isto acaba promovendo um ciclo contínuo de novas contratações e, por consequência, novos custos com treinamentos e reposições. 
