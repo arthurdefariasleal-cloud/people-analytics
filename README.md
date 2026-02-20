@@ -4,7 +4,7 @@ Como transformar dados de perfil e comportamento em decisões melhores de contra
 # Estrutura do Projeto
 
 ```bash
-people-analytics-performance/
+people-analytics/
 │
 ├── data/
 │   └── raw/
